@@ -13,5 +13,6 @@ app.use(express.static(path.join(__dirname, 'dist')));
 // 监听端口
 app.listen(8080, () => {
   query();
+  console.log('bbbbbb');
   console.log('listen port 8080 success');
 });
