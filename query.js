@@ -1,9 +1,30 @@
-const { sequelize } = require('./sequelize');
+const { sequelize } = require("./sequelize");
+const { QueryTypes, DataTypes } = require("sequelize");
+const { fileManageModel } = require("./app/model/file-manage.model");
+const { aihubServerMasterModel } = require("./app/model/aihub-server.model");
 async function query() {
-  const code = await sequelize.query("select * from adw.mst_code");
-  const [results, metadata] = await sequelize.query("select * from adw.mst_entity");
-  console.log(code, null, 4);
-  console.log(results, null, 4);
-  console.log(metadata, null, 4);
+  // await sequelize.sync({ force: true });
+  await fileManageModel.destroy({
+    where: {
+      fileId: 3
+    }
+  });
+  await fileManageModel.findAll({
+    where: {
+      fileId: 3
+    }
+  });
+  // await fileManageModel.upsert({
+  //   fileId: 1,
+  //   fileName: 'hu'
+  // });
+  // await fileManageModel.upsert({
+  //   fileId: 2,
+  //   fileName: 'yu'
+  // });
+  // await fileManageModel.upsert({
+  //   fileId: 3,
+  //   fileName: 'nan'
+  // });
 }
 exports.query = query;
